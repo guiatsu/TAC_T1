@@ -1,0 +1,4 @@
+-lmingw32 -lSDL2main -lSDL2
+
+colocar isso no final na hora de compilar
+g++ -o programa.cpp executavel_nome -lmingw32 -lSDL2main -lSDL2
