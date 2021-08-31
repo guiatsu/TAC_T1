@@ -33,10 +33,12 @@
     }
 
     Game::~Game(){
-        // SDL_Music(Mix_CloseAudio);
-        // SDL_Music(Mix_Quit);
-        // SDL_image (IMG_Quit);
-        // SDL_Quit();
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        Mix_CloseAudio();
+        Mix_Quit();
+        IMG_Quit();
+        SDL_Quit();
     }
     SDL_Renderer *Game::GetRenderer(){
         return renderer;

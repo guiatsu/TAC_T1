@@ -1,5 +1,6 @@
 dep/Music.d bin/Music.o: src/Music.cpp src/../include/Music.hpp \
- C:/TDM-GCC-32/include/SDL2/SDL.h C:/TDM-GCC-32/include/SDL2/SDL_main.h \
+ src/../include/SDL_include.h C:/TDM-GCC-32/include/SDL2/SDL.h \
+ C:/TDM-GCC-32/include/SDL2/SDL_main.h \
  C:/TDM-GCC-32/include/SDL2/SDL_stdinc.h \
  C:/TDM-GCC-32/include/SDL2/SDL_config.h \
  C:/TDM-GCC-32/include/SDL2/SDL_platform.h \
@@ -204,6 +205,7 @@ dep/Music.d bin/Music.o: src/Music.cpp src/../include/Music.hpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/functional_hash.h \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/basic_string.tcc
 src/../include/Music.hpp:
+src/../include/SDL_include.h:
 C:/TDM-GCC-32/include/SDL2/SDL.h:
 C:/TDM-GCC-32/include/SDL2/SDL_main.h:
 C:/TDM-GCC-32/include/SDL2/SDL_stdinc.h:

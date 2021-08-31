@@ -26,6 +26,6 @@ bool Music::IsOpen(){
     return false;
 }
 Music::~Music(){
-    Stop(2);
+    Stop(1500);
     Mix_FreeMusic(music);
 }
