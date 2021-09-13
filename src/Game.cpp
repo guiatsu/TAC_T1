@@ -14,7 +14,7 @@
             cout << "erro ao inicializar imagem" << endl;
         }
 
-        if(Mix_Init(MIX_INIT_OGG) == 0){
+        if(Mix_Init(MIX_INIT_OGG | MIX_INIT_MP3) == 0){
             cout << "erro ao inicializar o som" << endl;
         }
         if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024) != 0){
@@ -29,6 +29,7 @@
         if(renderer == nullptr){
             cout << SDL_GetError() << endl;
         }
+        srand(time(NULL));
         state = new State();
     }
 
@@ -54,9 +55,10 @@
         return *instance;
     }
     void Game::Run(){
+
         while(!state->QuitRequested()){
-            state->Update(0);
-            state->Render();
+            state -> Update(0);
+            state -> Render();
             SDL_RenderPresent(renderer);
             SDL_Delay(33);
         }
