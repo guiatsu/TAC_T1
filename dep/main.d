@@ -1,4 +1,4 @@
-dep/main.d bin/main.o: src/Main.cpp src/../include/Game.hpp \
+dep/Main.d bin/Main.o: src/Main.cpp src/../include/Game.hpp \
  src/../include/SDL_include.h C:/TDM-GCC-32/include/SDL2/SDL.h \
  C:/TDM-GCC-32/include/SDL2/SDL_main.h \
  C:/TDM-GCC-32/include/SDL2/SDL_stdinc.h \

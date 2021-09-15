@@ -10,9 +10,9 @@ State::State(){
 	go -> box.y = 0;
 	objectArray.emplace_back(go);
 
-    // music = new Music("./assets/audio/stageState.ogg");
+    music = new Music("./assets/audio/stageState.ogg");
 
-    // music ->Play();
+    music ->Play();
     quitRequested = false;
 }
 
@@ -31,10 +31,13 @@ void State::Update(float dt){
     }
     for(unsigned int i = 0 ; i < objectArray.size();i++){
         if(objectArray[i] -> IsDead()){
-            objectArray.erase(objectArray.begin()+i);
+			Sound *sound = (Sound *) objectArray[i].get() -> GetComponent("Sound");
+			objectArray[i].get() ->RemoveComponent(objectArray[i] ->GetComponent("Sprite"));
+			objectArray[i].get() ->RemoveComponent(objectArray[i] ->GetComponent("Face"));
+			if((sound != nullptr && !sound ->IsOpen()) || (sound == nullptr))
+	            objectArray.erase(objectArray.begin()+i);
         }
     }
-
 
 }
 bool State::QuitRequested(){

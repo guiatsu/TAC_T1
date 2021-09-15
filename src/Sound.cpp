@@ -19,7 +19,12 @@ void Sound::Stop(){
         Mix_HaltChannel(this -> channel);
     }
 }
-
+bool Sound::IsOpen(){
+    if(Mix_Playing(this -> channel))
+        return true;
+    return false;
+    
+}
 void Sound::Open(string file){
     this -> chunk = Mix_LoadWAV(file.c_str());
     if(this -> chunk == nullptr){
@@ -34,10 +39,10 @@ void Sound::Update(float dt){
 }
 
 Sound::~Sound(){
-    // Stop();
-    // if(this -> chunk != nullptr){
-    //     Mix_FreeChunk(this -> chunk);
-    // }
+    Stop();
+    if(this -> chunk != nullptr){
+        Mix_FreeChunk(this -> chunk);
+    }
 }
 bool Sound::Is(string type){
     if(type == "Sound")
