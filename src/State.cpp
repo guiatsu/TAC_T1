@@ -21,19 +21,19 @@ void State::LoadAssets(){
 }
 void State::Render(){
 	for(unsigned int i = 0 ; i < objectArray.size();i++){
-        objectArray[i].get() -> Render();
+        objectArray[i] -> Render();
     }
 }
 void State::Update(float dt){
     Input();
     for(unsigned int i = 0 ; i < objectArray.size();i++){
-        objectArray[i].get() -> Update(dt);
+        objectArray[i] -> Update(dt);
     }
     for(unsigned int i = 0 ; i < objectArray.size();i++){
         if(objectArray[i] -> IsDead()){
 			Sound *sound = (Sound *) objectArray[i].get() -> GetComponent("Sound");
-			objectArray[i].get() ->RemoveComponent(objectArray[i] ->GetComponent("Sprite"));
-			objectArray[i].get() ->RemoveComponent(objectArray[i] ->GetComponent("Face"));
+			objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Sprite"));
+			objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Face"));
 			if((sound != nullptr && !sound ->IsOpen()) || (sound == nullptr))
 	            objectArray.erase(objectArray.begin()+i);
         }
@@ -104,8 +104,8 @@ void State::AddObject(int mouseX, int mouseY){
 	string path = "./assets/img/penguinface.png";
     Sprite *img = new Sprite(*go,path);
     go -> AddComponent(img);
-    go -> box.x = mouseX;
-    go -> box.y = mouseY;
+    go -> box.x = mouseX - go -> box.center().x;
+    go -> box.y = mouseY - go -> box.center().y;
 	path = "./assets/audio/boom.wav";
     Sound *snd = new Sound(*go,path);
     go -> AddComponent(snd);

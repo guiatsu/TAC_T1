@@ -13,12 +13,12 @@ GameObject::~GameObject(){
 
 void GameObject::Update(float dt){
     for(unsigned int i = 0; i < this -> components.size(); i++){
-        components[i].get() -> Update(dt);
+        components[i] -> Update(dt);
     }
 }
 void GameObject::Render(){
     for(unsigned int i = 0; i < this -> components.size(); i++){
-        components[i].get() -> Render();
+        components[i] -> Render();
     }
 }
 
