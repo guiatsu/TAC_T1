@@ -9,14 +9,10 @@ Sprite::Sprite (GameObject &associated, string file) : Component(associated){
     Open(file);
 }
 Sprite::~Sprite (){
-    SDL_DestroyTexture(texture);
 }
 void Sprite::Open (string file){
-    if(IsOpen()){
-        texture = nullptr;
-    }
-    else{
-        texture = IMG_LoadTexture( Game::GetInstance().GetRenderer(), file.c_str());
+    if(!IsOpen()){
+        texture =  Resources::GetImage(file);
         if(texture == nullptr){
             cout << IMG_GetError()  << endl;
         }
@@ -34,11 +30,14 @@ void Sprite::SetClip (int x, int y, int w, int h){
     clipRect.h = h;
 }
 void Sprite::Render (){
+    Render(associated.box.x,associated.box.y);
+}
+void Sprite::Render (float x, float y){
     SDL_Rect dsrect;
-    dsrect.x = associated.box.x;
-    dsrect.y = associated.box.y;
-    dsrect.w = associated.box.w;
-    dsrect.h = associated.box.h;
+    dsrect.x = x;
+    dsrect.y = y;
+    dsrect.w = clipRect.w;
+    dsrect.h = clipRect.h;
     if(IsOpen())
         if(SDL_RenderCopy(Game::GetInstance().GetRenderer(),texture,&clipRect,&dsrect) != 0)
             cout << SDL_GetError() << endl;

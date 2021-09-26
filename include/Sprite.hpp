@@ -5,6 +5,7 @@
 #include "SDL_include.h"
 #include <string>
 #include "Component.hpp"
+#include "Resources.hpp"
 using namespace std;
 
 class Sprite : public Component{
@@ -21,6 +22,7 @@ class Sprite : public Component{
     void Open (string file);
     void SetClip (int x, int y, int w, int h);
     void Render ();
+    void Render (float x, float y);
     int GetWidth ();
     int GetHeight ();
     bool IsOpen ();

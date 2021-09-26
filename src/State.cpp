@@ -2,14 +2,20 @@
 State::State(){
 	GameObject *go = new GameObject();
 
-	string path = "./assets/img/ocean.jpg";
-    Sprite *bg = new Sprite(*go,path);
-
-	go -> AddComponent(bg);
+	GameObject *oceango = new GameObject();
+    Sprite *bg = new Sprite(*oceango,"./assets/img/ocean.jpg");
+	oceango -> AddComponent(bg);
+	oceango -> box.x = 0;
+	oceango -> box.y = 0;
+	objectArray.emplace_back(oceango);
+	string path = "./assets/img/tileset.png";
+	TileSet *tileset = new TileSet(64,64,path);
+	path = "./assets/map/tileMap.txt";
+	TileMap *tileMap = new TileMap(*go,path,tileset);
+	go -> AddComponent(tileMap);
 	go -> box.x = 0;
 	go -> box.y = 0;
 	objectArray.emplace_back(go);
-
     music = new Music("./assets/audio/stageState.ogg");
 
     music ->Play();
@@ -31,10 +37,10 @@ void State::Update(float dt){
     }
     for(unsigned int i = 0 ; i < objectArray.size();i++){
         if(objectArray[i] -> IsDead()){
-			Sound *sound = (Sound *) objectArray[i].get() -> GetComponent("Sound");
-			objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Sprite"));
-			objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Face"));
-			if((sound != nullptr && !sound ->IsOpen()) || (sound == nullptr))
+			// Sound *sound = (Sound *) objectArray[i].get() -> GetComponent("Sound");
+			// objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Sprite"));
+			// objectArray[i] ->RemoveComponent(objectArray[i] ->GetComponent("Face"));
+			// if((sound != nullptr && !sound ->IsOpen()) || (sound == nullptr))
 	            objectArray.erase(objectArray.begin()+i);
         }
     }

@@ -16,8 +16,7 @@ void Music::Stop(int msToStop){
 }
 
 void Music::Open(string file){
-
-    music = Mix_LoadMUS(file.c_str());
+    music = Resources::GetMusic(file);
 }
 bool Music::IsOpen(){
     if(music != nullptr){
@@ -27,5 +26,4 @@ bool Music::IsOpen(){
 }
 Music::~Music(){
     Stop(1500);
-    Mix_FreeMusic(music);
 }

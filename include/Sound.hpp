@@ -5,6 +5,7 @@
 #include "SDL_include.h"
 #include "GameObject.hpp"
 #include "Component.hpp"
+#include "Resources.hpp"
 #include <iostream>
 using namespace std;
 class Sound : public Component{

@@ -8,6 +8,7 @@
 #include "Face.hpp"
 #include <memory>
 #include <math.h>
+#include "TileMap.hpp"
 using namespace std;
 
 class State{

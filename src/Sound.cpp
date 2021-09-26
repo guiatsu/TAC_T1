@@ -26,7 +26,7 @@ bool Sound::IsOpen(){
     
 }
 void Sound::Open(string file){
-    this -> chunk = Mix_LoadWAV(file.c_str());
+    this -> chunk = Resources::GetSound(file);
     if(this -> chunk == nullptr){
         cout << "erro ao abrir arquivo de som" << endl;
     }
@@ -39,10 +39,7 @@ void Sound::Update(float dt){
 }
 
 Sound::~Sound(){
-    Stop();
-    if(this -> chunk != nullptr){
-        Mix_FreeChunk(this -> chunk);
-    }
+    // Stop();
 }
 bool Sound::Is(string type){
     if(type == "Sound")
