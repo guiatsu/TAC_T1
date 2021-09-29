@@ -1,4 +1,5 @@
 #ifndef VECT_HPP
+#define VECT_HPP
 #include <math.h>
 
 class Vect{

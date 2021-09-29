@@ -119,7 +119,13 @@ dep/Face.d bin/Face.o: src/Face.cpp src/../include/Face.hpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/stl_bvector.h \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/vector.tcc \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ctime \
- C:/TDM-GCC-32/include/time.h src/../include/Sound.hpp \
+ C:/TDM-GCC-32/include/time.h src/../include/InputManager.hpp \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/unordered_map \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable.h \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable_policy.h \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/limits \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/unordered_map.h \
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/erase_if.h \
  src/../include/SDL_include.h \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL.h \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_main.h \
@@ -170,16 +176,11 @@ dep/Face.d bin/Face.o: src/Face.cpp src/../include/Face.hpp \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_version.h \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_locale.h \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_misc.h \
+ src/../include/Sound.hpp \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_mixer.h \
  src/../include/Resources.hpp \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_image.h \
  C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL.h \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/unordered_map \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable.h \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable_policy.h \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/limits \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/unordered_map.h \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/erase_if.h \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/iostream \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ostream \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ios \
@@ -202,7 +203,8 @@ dep/Face.d bin/Face.o: src/Face.cpp src/../include/Face.hpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/basic_ios.tcc \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/ostream.tcc \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/istream \
- C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/istream.tcc
+ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/istream.tcc \
+ src/../include/Camera.hpp
 src/../include/Face.hpp:
 src/../include/GameObject.hpp:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/memory:
@@ -337,7 +339,13 @@ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/stl_bvector.h:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/vector.tcc:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ctime:
 C:/TDM-GCC-32/include/time.h:
-src/../include/Sound.hpp:
+src/../include/InputManager.hpp:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/unordered_map:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable.h:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable_policy.h:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/limits:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/unordered_map.h:
+C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/erase_if.h:
 src/../include/SDL_include.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_main.h:
@@ -388,16 +396,11 @@ C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_timer.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_version.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_locale.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_misc.h:
+src/../include/Sound.hpp:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_mixer.h:
 src/../include/Resources.hpp:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL_image.h:
 C:\SDL2-2.0.14\i686-w64-mingw32/include/SDL2/SDL.h:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/unordered_map:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable.h:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/hashtable_policy.h:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/limits:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/unordered_map.h:
-C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/erase_if.h:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/iostream:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ostream:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ios:
@@ -421,3 +424,4 @@ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/basic_ios.tcc:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/ostream.tcc:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/istream:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/istream.tcc:
+src/../include/Camera.hpp:

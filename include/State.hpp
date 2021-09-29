@@ -6,9 +6,12 @@
 #include "Music.hpp"
 #include "Sound.hpp"
 #include "Face.hpp"
+#include "InputManager.hpp"
+#include "Camera.hpp" 
+#include "CameraFollower.hpp"
+#include "TileMap.hpp"
 #include <memory>
 #include <math.h>
-#include "TileMap.hpp"
 using namespace std;
 
 class State{

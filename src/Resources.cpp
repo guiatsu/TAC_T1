@@ -7,8 +7,14 @@ unordered_map<string,Mix_Music *> Resources::musicTable;
 
 SDL_Texture *Resources::GetImage(string file){
     auto it = imageTable.find(file);
+    SDL_Texture* texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
     if(it == imageTable.end())
-        imageTable[file] = IMG_LoadTexture( Game::GetInstance().GetRenderer(), file.c_str());
+        if(texture != nullptr){
+            imageTable[file] = texture;
+            return imageTable[file];
+        }
+        else
+            return nullptr;
     else
         return it -> second;
 }
@@ -19,8 +25,14 @@ void Resources::ClearImages(){
 
 Mix_Music *Resources::GetMusic(string file){
     auto it = musicTable.find(file);
+    Mix_Music *music = Mix_LoadMUS(file.c_str());
     if(it == musicTable.end())
-        musicTable[file] = Mix_LoadMUS(file.c_str());
+        if(music != nullptr){
+            musicTable[file] = music;
+            return musicTable[file];
+        }
+        else
+            return nullptr;
     else
         return it -> second;
 }
@@ -31,8 +43,14 @@ void Resources::ClearMusics(){
 
 Mix_Chunk *Resources::GetSound(string file){
     auto it = soundTable.find(file);
+    Mix_Chunk *sound = Mix_LoadWAV(file.c_str());
     if(it == soundTable.end())
-        soundTable[file] = Mix_LoadWAV(file.c_str());
+        if(sound !=  nullptr){
+            soundTable[file] = sound;
+            return soundTable[file];
+        }
+        else
+            return nullptr;
     else
         return it -> second;
       

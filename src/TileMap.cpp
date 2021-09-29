@@ -46,8 +46,8 @@ int &TileMap::At(int x, int y, int z){
 void TileMap::RenderLayer(int layer, int cameraX, int cameraY){
     for(int i = 0; i < mapHeight;i++){
         for(int j = 0; j < mapWidth;j++){
-            int x = j * tileSet -> GetTileWidth();
-            int y = i * tileSet -> GetTileHeight();
+            int x = j * tileSet -> GetTileWidth()-cameraX;
+            int y = i * tileSet -> GetTileHeight()-cameraY;
             tileSet -> RenderTile(At(j,i,layer),x,y);
         }
     }
@@ -55,7 +55,7 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY){
 }
 void TileMap::Render(){
     for(int i = 0; i < mapDepth;i++)
-        RenderLayer(i,associated.box.x, associated.box.y);
+        RenderLayer(i,Camera::pos.x, Camera::pos.y);
 }
 int TileMap::GetWidth(){
     return mapWidth;

@@ -3,6 +3,7 @@
 #define INCLUDE_SDL
 #include "Component.hpp"
 #include "TileSet.hpp"
+#include "Camera.hpp"
 #include <fstream>
 
 class TileMap : public Component {

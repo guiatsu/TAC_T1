@@ -179,6 +179,7 @@ dep/Resources.d bin/Resources.o: src/Resources.cpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/vector.tcc \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ctime \
  C:/TDM-GCC-32/include/time.h src/../include/Resources.hpp \
+ src/../include/Camera.hpp src/../include/InputManager.hpp \
  src/../include/Music.hpp src/../include/Sound.hpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/iostream \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ostream \
@@ -203,8 +204,8 @@ dep/Resources.d bin/Resources.o: src/Resources.cpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/ostream.tcc \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/istream \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/istream.tcc \
- src/../include/Face.hpp src/../include/TileMap.hpp \
- src/../include/TileSet.hpp \
+ src/../include/Face.hpp src/../include/CameraFollower.hpp \
+ src/../include/TileMap.hpp src/../include/TileSet.hpp \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/fstream \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/codecvt.h \
  C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/mingw32/bits/basic_file.h \
@@ -406,6 +407,8 @@ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/vector.tcc:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/ctime:
 C:/TDM-GCC-32/include/time.h:
 src/../include/Resources.hpp:
+src/../include/Camera.hpp:
+src/../include/InputManager.hpp:
 src/../include/Music.hpp:
 src/../include/Sound.hpp:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/iostream:
@@ -432,6 +435,7 @@ C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/ostream.tcc:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/istream:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/bits/istream.tcc:
 src/../include/Face.hpp:
+src/../include/CameraFollower.hpp:
 src/../include/TileMap.hpp:
 src/../include/TileSet.hpp:
 C:/TDM-GCC-32/lib/gcc/mingw32/10.3.0/include/c++/fstream:

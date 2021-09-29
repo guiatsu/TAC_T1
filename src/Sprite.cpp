@@ -30,7 +30,7 @@ void Sprite::SetClip (int x, int y, int w, int h){
     clipRect.h = h;
 }
 void Sprite::Render (){
-    Render(associated.box.x,associated.box.y);
+    Render(associated.box.x-Camera::pos.x,associated.box.y-Camera::pos.y);
 }
 void Sprite::Render (float x, float y){
     SDL_Rect dsrect;

@@ -9,7 +9,7 @@ class Rect{
     Rect operator+(Vect vect);
     friend Rect operator+(Vect vect,Rect rect);
     Vect center();
-    bool is_in(Vect vect);
+    bool contains(Vect vect);
 };
 
 #endif

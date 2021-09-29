@@ -29,6 +29,8 @@
         if(renderer == nullptr){
             cout << SDL_GetError() << endl;
         }
+        frameStart = 0;
+        dt = 0;
         srand(time(NULL));
         state = new State();
     }
@@ -57,9 +59,22 @@
     void Game::Run(){
 
         while(!state->QuitRequested()){
-            state -> Update(0);
+            CalculateDeltaTime();
+            InputManager::GetInstance().Update();
+            state -> Update(dt);
             state -> Render();
             SDL_RenderPresent(renderer);
             SDL_Delay(33);
         }
+        Resources::ClearImages();
+        Resources::ClearSounds();
+        Resources::ClearMusics();
+    }
+    void Game::CalculateDeltaTime(){
+        int lastFrame = frameStart;
+        frameStart = SDL_GetTicks ();
+        dt = (frameStart - lastFrame)/1000.0;
+    }
+    float Game::GetDeltaTime(){
+        return dt;
     }

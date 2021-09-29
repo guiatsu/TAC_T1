@@ -6,6 +6,7 @@
 #include <string>
 #include "Component.hpp"
 #include "Resources.hpp"
+#include "Camera.hpp" 
 using namespace std;
 
 class Sprite : public Component{

@@ -14,6 +14,9 @@ private:
     SDL_Window *window;
     SDL_Renderer *renderer;
     State *state;
+    int frameStart;
+    float dt;
+    void CalculateDeltaTime();
     Game(string title, int width, int height);
 public:
     ~Game();
@@ -21,5 +24,6 @@ public:
     State &GetState();
     static Game &GetInstance();
     void Run();
+    float GetDeltaTime();
 };
 #endif

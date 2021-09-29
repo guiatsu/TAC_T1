@@ -23,5 +23,8 @@ bool Face::Is(string type){
     return false;
 }
 void Face::Update(float dt){
-
+	InputManager instance = InputManager::GetInstance();
+    if(instance.MousePress(LEFT_MOUSE_BUTTON))
+        if(associated.box.contains(Vect(instance.GetMouseX()+Camera::pos.x, instance.GetMouseY()+Camera::pos.y)))
+            Damage(std::rand() % 10 + 10);
 }
