@@ -55,7 +55,7 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY){
 }
 void TileMap::Render(){
     for(int i = 0; i < mapDepth;i++)
-        RenderLayer(i,Camera::pos.x, Camera::pos.y);
+        RenderLayer(i,Camera::pos.x*(1+(i*0.50)), Camera::pos.y*(1+(i*0.50)));
 }
 int TileMap::GetWidth(){
     return mapWidth;

@@ -5,6 +5,7 @@
 #include "InputManager.hpp"
 #include "Vect.hpp"
 #include "Camera.hpp"
+#include "Sprite.hpp"
 using namespace std;
 
 class CameraFollower : public Component{

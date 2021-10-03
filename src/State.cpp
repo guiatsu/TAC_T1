@@ -21,7 +21,7 @@ State::State(){
 	objectArray.emplace_back(go);
     music = new Music("./assets/audio/stageState.ogg");
 
-    // music ->Play();
+    music ->Play();
     quitRequested = false;
 }
 

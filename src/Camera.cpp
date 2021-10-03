@@ -15,8 +15,8 @@ void Camera::Update (float dt){
     InputManager instance = InputManager::GetInstance();
     int spd = 128;
     if(focus != nullptr){
-        pos.y = focus ->box.center().y;
         pos.x = focus ->box.center().x;
+        pos.y = focus ->box.center().y;
     }
     else{
         if(instance.IsKeyDown(UP_ARROW_KEY)){
