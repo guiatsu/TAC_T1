@@ -10,6 +10,14 @@ Vect::Vect(float x, float y){
 Vect Vect::operator+(Vect vect){
     return Vect(this->x+vect.x,this->y+vect.y);
 }
+Vect Vect::operator+=(Vect vect){
+    *this = Vect(this->x+vect.x,this->y+vect.y);
+}
+Vect Vect::normalized(){
+    if(this -> x != 0 && this -> y != 0)
+        return Vect(this -> x/this -> magnitude(), this -> y / this -> magnitude());
+    return *this;
+}
 Vect Vect::operator-(Vect vect){
     return Vect(this->x-vect.x,this->y-vect.y);
 }
