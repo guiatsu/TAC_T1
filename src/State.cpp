@@ -21,8 +21,24 @@ State::State(){
 	objectArray.emplace_back(go);
     music = new Music("./assets/audio/stageState.ogg");
 
+    GameObject *AlienGo = new GameObject();
+    Alien *alien = new Alien(*AlienGo,5);
+    AlienGo -> box.y = 300 - AlienGo -> box.h/2;
+    AlienGo -> box.x = 512 - AlienGo -> box.w/2;
+    AlienGo -> AddComponent(alien);
+    
+    objectArray.emplace_back(AlienGo);
     music ->Play();
     quitRequested = false;
+    started = false;
+
+}
+void State::Start(){
+    LoadAssets();
+    for(unsigned int i = 0; i < objectArray.size();i++){
+        objectArray[i] -> Start();
+    }
+    started = true;
 }
 
 void State::LoadAssets(){
@@ -37,10 +53,6 @@ void State::Update(float dt){
 	InputManager instance = InputManager::GetInstance();
 	if(instance.KeyPress(ESCAPE_KEY) || instance.QuitRequested())
 		quitRequested = true;
-	if(instance.KeyPress(SPACEBAR)){
-		Vect objPos = Vect( 200, 0 ).rotate( -M_PI + M_PI*(rand() % 1001)/500.0 ) + Vect( instance.GetMouseX(), instance.GetMouseY() );
-		AddObject((int)objPos.x , (int)objPos.y);
-	}
     Camera::Update(dt);
 
     for(unsigned int i = 0 ; i < objectArray.size();i++){
@@ -60,18 +72,23 @@ State::~State(){
     objectArray.clear();
 }
 
-void State::AddObject(int mouseX, int mouseY){
+weak_ptr<GameObject> State::AddObject(GameObject *go){
     
-    GameObject *go = new GameObject();
-	string path = "./assets/img/penguinface.png";
-    Sprite *img = new Sprite(*go,path);
-    go -> AddComponent(img);
-    go -> box.x = mouseX - go->box.w/2 + Camera::pos.x;
-    go -> box.y = mouseY - go->box.h/2 + Camera::pos.y;
-	path = "./assets/audio/boom.wav";
-    Sound *snd = new Sound(*go,path);
-    go -> AddComponent(snd);
-    Face *face = new Face(*go);
-    go -> AddComponent(face);
-    objectArray.emplace_back(go);
+    shared_ptr<GameObject> shrd_go(go);
+    objectArray.push_back(shrd_go);
+    if(started == true){
+        shrd_go -> Start();
+    }
+    weak_ptr<GameObject> weak_go(shrd_go);
+    return weak_go;
+
+}
+weak_ptr<GameObject> State::GetObjectPtr(GameObject *go){
+    for(unsigned int i = 0; i < objectArray.size();i++){
+        if(objectArray[i].get() == go){
+            weak_ptr<GameObject> weak_go(objectArray[i]);
+            return weak_go;
+        }
+    }
+    return {};
 }

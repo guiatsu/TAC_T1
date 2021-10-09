@@ -46,3 +46,6 @@ bool Sound::Is(string type){
         return true;
     return false;
 }
+void Sound::Start(){
+    
+}

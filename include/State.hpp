@@ -5,10 +5,10 @@
 #include "Sprite.hpp"
 #include "Music.hpp"
 #include "Sound.hpp"
-#include "Face.hpp"
 #include "InputManager.hpp"
 #include "Camera.hpp" 
 #include "CameraFollower.hpp"
+#include "Alien.hpp"
 #include "TileMap.hpp"
 #include <memory>
 #include <math.h>
@@ -16,11 +16,11 @@ using namespace std;
 
 class State{
     private:
-    vector<unique_ptr<GameObject>> objectArray;
+    vector<shared_ptr<GameObject>> objectArray;
     Music *music;
     bool quitRequested;
     void Input();
-    void AddObject(int mouseX, int mouseY);
+    bool started;
     public:
 
     State();
@@ -28,6 +28,9 @@ class State{
     void LoadAssets();
     void Update(float dt);
     void Render();
+    void Start();
+    weak_ptr<GameObject> AddObject(GameObject *go);
+    weak_ptr<GameObject> GetObjectPtr(GameObject *go);
     bool QuitRequested();
 };
 #endif

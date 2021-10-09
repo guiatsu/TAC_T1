@@ -2,6 +2,7 @@
 
 GameObject::GameObject(){
     isDead = false;
+    started = false;
 }
 
 GameObject::~GameObject(){
@@ -28,6 +29,8 @@ bool GameObject::IsDead(){
 
 void GameObject::AddComponent(Component *cpt){
     this -> components.emplace_back(cpt);
+    if(started == true)
+        cpt -> Start();
 }
 
 void GameObject::RemoveComponent(Component *cpt){
@@ -47,4 +50,10 @@ Component *GameObject::GetComponent(string type){
         if(this -> components[i] -> Is(type))
             return components[i].get();
     return nullptr;
+}
+void GameObject::Start(){
+    for(unsigned int i = 0; i < components.size();i++){
+        components[i] -> Start();
+    }
+    started = true;
 }

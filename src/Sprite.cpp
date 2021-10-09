@@ -61,3 +61,6 @@ bool Sprite::Is(string type){
         return true;
     return false;
 }
+void Sprite::Start(){
+    
+}

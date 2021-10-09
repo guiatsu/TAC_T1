@@ -10,6 +10,8 @@ class Vect{
     Vect operator+ (Vect vect);
     Vect operator- (Vect vect);
     Vect operator* (float escalar);
+    Vect operator+= (Vect vect);
+    Vect normalized();
     friend Vect operator*(float escalar, Vect &vect);
     float magnitude();
     float dist(Vect &vect);

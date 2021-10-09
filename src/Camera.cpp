@@ -1,6 +1,7 @@
 #include "../include/Camera.hpp"
 #include <iostream>
 Vect Camera::pos;
+Vect Camera::speed;
 GameObject *Camera::focus;
 
 void Camera::Follow (GameObject* newFocus){
@@ -13,24 +14,25 @@ void Camera::Unfollow (){
 
 void Camera::Update (float dt){
     InputManager instance = InputManager::GetInstance();
-    int spd = 128;
+    speed = Vect(0,0);
+    int spd = 256;
     if(focus != nullptr){
         pos.x = focus ->box.center().x;
         pos.y = focus ->box.center().y;
     }
     else{
         if(instance.IsKeyDown(UP_ARROW_KEY)){
-            pos.y -= dt*spd;
+            speed += Vect(0,-1);
         }
         if(instance.IsKeyDown(DOWN_ARROW_KEY)){
-            pos.y += dt*spd;
+            speed += Vect(0,1);
         }
         if(instance.IsKeyDown(LEFT_ARROW_KEY)){
-            pos.x -= dt*spd;
+            speed += Vect(-1,0);
         }
         if(instance.IsKeyDown(RIGHT_ARROW_KEY)){
-            pos.x += dt*spd;
+            speed += Vect(1,0);
         }
-        // cout << pos.x << " " << pos.y << endl;
+        pos += speed.normalized()*spd*dt;
     }
 }

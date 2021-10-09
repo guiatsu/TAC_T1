@@ -14,6 +14,7 @@ class CameraFollower : public Component{
         void Update (float dt);
         void Render ();
         bool Is (string type);
+        void Start();
 };
 
 

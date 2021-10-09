@@ -29,6 +29,7 @@ class Sprite : public Component{
     bool IsOpen ();
     void Update(float dt);
     bool Is(string type);
+    void Start();
 
 };
 #endif
