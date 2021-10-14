@@ -3,6 +3,7 @@
 GameObject::GameObject(){
     isDead = false;
     started = false;
+    this -> angleDeg = 0;
 }
 
 GameObject::~GameObject(){
@@ -44,7 +45,6 @@ void GameObject::RemoveComponent(Component *cpt){
 void GameObject::RequestDelete(){
     this -> isDead = true;
 }
-
 Component *GameObject::GetComponent(string type){
     for(unsigned int i = 0;i < this -> components.size();i++)
         if(this -> components[i] -> Is(type))

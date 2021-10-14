@@ -14,8 +14,8 @@ class GameObject{
     private:
         vector<unique_ptr<Component>> components;
         bool isDead;
-
     public:
+        double angleDeg;
         Rect box;
         GameObject();
         ~GameObject();

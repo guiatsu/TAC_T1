@@ -15,6 +15,7 @@ class Sprite : public Component{
     int width;  
     int height; 
     SDL_Rect clipRect;
+    Vect scale;
 
     public:
     Sprite (GameObject &associated);
@@ -26,6 +27,8 @@ class Sprite : public Component{
     void Render (float x, float y);
     int GetWidth ();
     int GetHeight ();
+    void SetScale(float scaleX, float scaleY);
+    Vect GetScale();
     bool IsOpen ();
     void Update(float dt);
     bool Is(string type);

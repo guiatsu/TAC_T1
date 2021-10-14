@@ -21,6 +21,7 @@ float Vect::magnitude(){
 }
 Vect Vect::operator+=(Vect vect){
     *this = Vect(this->x+vect.x,this->y+vect.y);
+    return *this;
 }
 Vect Vect::normalized(){
     if(this -> x != 0 && this -> y != 0)

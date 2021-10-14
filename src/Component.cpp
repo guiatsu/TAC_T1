@@ -11,6 +11,4 @@ void Component::Update(float dt){
 void Component::Render(){
 
 }
-bool Component::Is(string type){
 
-}

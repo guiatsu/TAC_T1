@@ -22,10 +22,11 @@ State::State(){
     music = new Music("./assets/audio/stageState.ogg");
 
     GameObject *AlienGo = new GameObject();
-    Alien *alien = new Alien(*AlienGo,5);
     AlienGo -> box.y = 300 - AlienGo -> box.h/2;
     AlienGo -> box.x = 512 - AlienGo -> box.w/2;
+    Alien *alien = new Alien(*AlienGo,5);
     AlienGo -> AddComponent(alien);
+    Camera::Follow(AlienGo);
     
     objectArray.emplace_back(AlienGo);
     music ->Play();

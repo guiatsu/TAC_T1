@@ -17,7 +17,7 @@ void Alien::Start(){
         weak_ptr<GameObject> aliencenter = instance -> GetObjectPtr(&associated);
         Minion *minion = new Minion(*go,aliencenter,(M_PI*(1+2*i*360/nMinions))/360);
         go -> AddComponent(minion);
-        minionArray.push_back(instance -> AddObject(go));    
+        minionArray.push_back(instance -> AddObject(go));
     }
 
 }
@@ -33,6 +33,7 @@ Alien::~Alien(){
 void Alien::Update(float dt){
     int spd = 256;
     InputManager input = InputManager::GetInstance();
+    associated.angleDeg -= M_PI/180*dt*spd*8;
     if(input.MousePress(LEFT_MOUSE_BUTTON)){
         taskQueue.push(Action(SHT,input.GetMouseX()+Camera::pos.x,input.GetMouseY()+Camera::pos.y));
     }
@@ -59,7 +60,7 @@ void Alien::Update(float dt){
             associated.box.y = alien_pos.y;
         }
         if(action.type == SHT){
-            int minionN = rand()%nMinions;
+            int minionN = ClosestMinion(action.pos);
             if(shared_ptr<GameObject> go = minionArray[minionN].lock()){
 
                 Minion *minion = (Minion *)go -> GetComponent("Minion");
@@ -71,6 +72,21 @@ void Alien::Update(float dt){
     if(hp <= 0){
         associated.RequestDelete();
     }
+}
+int Alien::ClosestMinion(Vect pos){
+    int minion;
+    float min_distance = 999999999; 
+    for(unsigned int i = 0; i < minionArray.size(); i++){
+        if(shared_ptr<GameObject> go = minionArray[i].lock()){
+            Vect aux = Vect(go->box.x,go->box.y);
+            float dist = aux.dist(pos);
+            if(dist <= min_distance){
+                min_distance = dist;
+                minion = i;
+            }
+        }
+    }
+    return minion;
 }
 void Alien::Render(){
 

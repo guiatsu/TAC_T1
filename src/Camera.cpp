@@ -17,8 +17,8 @@ void Camera::Update (float dt){
     speed = Vect(0,0);
     int spd = 256;
     if(focus != nullptr){
-        pos.x = focus ->box.center().x;
-        pos.y = focus ->box.center().y;
+        pos.x = focus ->box.center().x - 512;
+        pos.y = focus ->box.center().y - 300;
     }
     else{
         if(instance.IsKeyDown(UP_ARROW_KEY)){
