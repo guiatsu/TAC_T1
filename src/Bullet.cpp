@@ -1,7 +1,7 @@
 #include "../include/Bullet.hpp"
 
 Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite) : Component(associated){
-    Sprite *spr = new Sprite(associated, sprite);
+    Sprite *spr = new Sprite(associated, sprite,3,0.017);
     associated.AddComponent(spr);
     this -> speed = Vect(1,0);
     this -> speed = this -> speed.rotate(angle)*speed;

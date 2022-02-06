@@ -6,11 +6,14 @@ Sprite::Sprite (GameObject &associated) : Component(associated){
     scale.x = 1;
     scale.y = 1;
 }
-Sprite::Sprite (GameObject &associated, string file) : Component(associated){
+    
+Sprite::Sprite (GameObject &associated, string file, int frameCount, int frameTime) : Component(associated){
     texture = nullptr;
     scale.x = 1;
     scale.y = 1;
     Open(file);
+    SetFrameCount(frameCount);
+    SetFrameTime(frameTime);
 }
 Sprite::~Sprite (){
 }
@@ -25,6 +28,7 @@ void Sprite::Open (string file){
         SetClip(0,0,width,height);
         associated.box.w = width;
         associated.box.h = height;
+
     }
 }
 void Sprite::SetClip (int x, int y, int w, int h){
@@ -47,8 +51,9 @@ void Sprite::Render (float x, float y){
         if(SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture,&clipRect,&dsrect,associated.angleDeg,nullptr,SDL_FLIP_NONE) != 0)
             cout << SDL_GetError() << endl;
 }
+using namespace std;
 int Sprite::GetWidth (){
-    return width*scale.x;
+    return (width/frameCount)*scale.x;
 }
 int Sprite::GetHeight (){
     return height*scale.y;
@@ -59,6 +64,15 @@ bool Sprite::IsOpen (){
     return false;
 }
 void Sprite::Update(float dt){
+    timeElapsed += dt;
+    if(timeElapsed >= frameTime){
+        if(currentFrame+1 == frameCount){
+            SetFrame(0);
+        }
+        else{
+            SetFrame(currentFrame+1);
+        }
+    }
 
 }
 bool Sprite::Is(string type){
@@ -75,4 +89,20 @@ void Sprite::SetScale(float scaleX, float scaleY){
 }
 void Sprite::Start(){
     
+}
+void Sprite::SetFrame (int frame){
+    currentFrame = frame;
+    timeElapsed = 0;
+    SetClip(GetWidth()*currentFrame,0,width/frameCount,height);
+    
+}
+void Sprite::SetFrameCount (int frameCount){
+    this -> frameCount = frameCount;
+    SetFrame(0);
+    associated.box.w = GetWidth();
+
+}
+void Sprite::SetFrameTime (float frameTime){
+    this -> frameTime = frameTime;
+    timeElapsed = 0;
 }

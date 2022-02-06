@@ -45,7 +45,7 @@ void Minion::Shoot(Vect target){
     go -> box.y = aux.y;
     go -> angleDeg = angle*180/M_PI;
     
-    Bullet *bullet = new Bullet(*go,angle,512,50,1024,"./assets/img/minionbullet1.png");
+    Bullet *bullet = new Bullet(*go,angle,512,50,1024,"./assets/img/minionbullet2.png");
     go -> AddComponent(bullet);
     State *instance = &Game::GetInstance().GetState();
     instance -> AddObject(go);    

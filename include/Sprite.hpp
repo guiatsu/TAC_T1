@@ -13,13 +13,17 @@ class Sprite : public Component{
     private:
     SDL_Texture* texture;
     int width;  
-    int height; 
+    int height;
+    int frameCount;
+    int currentFrame;
+    float timeElapsed;
+    float frameTime;
     SDL_Rect clipRect;
     Vect scale;
 
     public:
     Sprite (GameObject &associated);
-    Sprite (GameObject &associated, string file);
+    Sprite (GameObject &associated, string file, int frameCount = 1, int frameTime = 1);
     ~Sprite ();
     void Open (string file);
     void SetClip (int x, int y, int w, int h);
@@ -33,6 +37,9 @@ class Sprite : public Component{
     void Update(float dt);
     bool Is(string type);
     void Start();
+    void SetFrame (int frame);
+    void SetFrameCount (int frameCount);
+    void SetFrameTime (float frameTime);
 
 };
 #endif
