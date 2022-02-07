@@ -37,7 +37,7 @@ bool Minion::Is(string type){
 }
 void Minion::Shoot(Vect target){
     Sprite *sprite = (Sprite *)associated.GetComponent("Sprite");
-    Vect pos = Vect(associated.box.center().x+associated.box.w/2-sprite->GetWidth()/2,associated.box.center().y+associated.box.h/2 -sprite->GetHeight()/2);
+    Vect pos = associated.box.center();
     float angle = pos.anglex2(target);
     Vect aux =  Vect(sprite->GetWidth()/2,0).rotate(angle)+pos;
     GameObject *go = new GameObject();
@@ -45,7 +45,7 @@ void Minion::Shoot(Vect target){
     go -> box.y = aux.y;
     go -> angleDeg = angle*180/M_PI;
     
-    Bullet *bullet = new Bullet(*go,angle,512,50,1024,"./assets/img/minionbullet2.png");
+    Bullet *bullet = new Bullet(*go,angle,512,50,1024,"./assets/img/minionbullet2.png",3);
     go -> AddComponent(bullet);
     State *instance = &Game::GetInstance().GetState();
     instance -> AddObject(go);    

@@ -10,6 +10,7 @@
 #include "CameraFollower.hpp"
 #include "Alien.hpp"
 #include "TileMap.hpp"
+#include "PenguinBody.hpp"
 #include <memory>
 #include <math.h>
 using namespace std;

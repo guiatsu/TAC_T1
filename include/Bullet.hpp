@@ -13,7 +13,7 @@ class Bullet : public Component {
         float distanceLeft;
         int damage;
     public:
-        Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite);
+        Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount = 1);
         int GetDamage();
         bool Is(string type);
         void Render();

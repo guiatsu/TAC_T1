@@ -26,9 +26,18 @@ State::State(){
     AlienGo -> box.x = 512 - AlienGo -> box.w/2;
     Alien *alien = new Alien(*AlienGo,5);
     AlienGo -> AddComponent(alien);
-    Camera::Follow(AlienGo);
     
     objectArray.emplace_back(AlienGo);
+    // Camera::Follow(AlienGo);
+    GameObject *PenguinGo = new GameObject();
+    PenguinGo -> box.y = 704 - PenguinGo -> box.h/2;
+    PenguinGo -> box.x = 640 - PenguinGo -> box.w/2;
+    PenguinBody *penguin = new PenguinBody(*PenguinGo);
+    PenguinGo -> AddComponent(penguin);
+    Camera::Follow(PenguinGo);
+
+    objectArray.emplace_back(PenguinGo);
+
     music ->Play();
     quitRequested = false;
     started = false;

@@ -1,7 +1,9 @@
 #include "../include/Bullet.hpp"
 
-Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite) : Component(associated){
-    Sprite *spr = new Sprite(associated, sprite,3,0.017);
+Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount) : Component(associated){
+    Sprite *spr = new Sprite(associated, sprite,frameCount,0.017);
+    associated.box.x-=spr->GetWidth()/2;
+    associated.box.y-=spr->GetHeight()/2;
     associated.AddComponent(spr);
     this -> speed = Vect(1,0);
     this -> speed = this -> speed.rotate(angle)*speed;
