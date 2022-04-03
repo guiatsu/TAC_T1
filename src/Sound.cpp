@@ -25,6 +25,9 @@ bool Sound::IsOpen(){
     return false;
     
 }
+void Sound::Volume(int volume){
+    Mix_Volume(this -> channel,volume);
+}
 void Sound::Open(string file){
     this -> chunk = Resources::GetSound(file);
     if(this -> chunk == nullptr){
@@ -39,7 +42,6 @@ void Sound::Update(float dt){
 }
 
 Sound::~Sound(){
-    // Stop();
 }
 bool Sound::Is(string type){
     if(type == "Sound")
@@ -49,3 +51,4 @@ bool Sound::Is(string type){
 void Sound::Start(){
     
 }
+void Sound::NotifyCollision(GameObject& other){}

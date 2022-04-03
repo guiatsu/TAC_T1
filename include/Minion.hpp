@@ -9,6 +9,7 @@
 #include "GameObject.hpp"
 #include "Bullet.hpp"
 #include <memory>
+#include "Collider.hpp"
 using namespace std;
 
 class Minion : public Component{
@@ -18,11 +19,13 @@ class Minion : public Component{
         
     public:
         Minion(GameObject &associated, weak_ptr<GameObject> alienCenter, float arcOffsetDeg = 0);
+        ~Minion();
         void Update(float dt);
         void Render();
         bool Is(string type);
         void Shoot(Vect target);
         void Start();
+        void NotifyCollision(GameObject& other);
 };
 
 

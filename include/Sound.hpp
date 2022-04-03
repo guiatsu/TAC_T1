@@ -21,6 +21,8 @@ class Sound : public Component{
         void Render();
         bool Is(string type);
         void Start();
+        void NotifyCollision(GameObject& other);
+        void Volume(int volume);
     private:
         Mix_Chunk* chunk;
         int channel;

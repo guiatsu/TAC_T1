@@ -49,3 +49,6 @@ Vect Vect::rotate(float angle){
 Vect operator*(float escalar, Vect &vect){
     return Vect(vect.x*escalar,vect.y*escalar);
 }
+Vect operator*(Vect const &vect,float escalar){
+    return Vect(vect.x*escalar,vect.y*escalar);
+}

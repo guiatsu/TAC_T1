@@ -18,6 +18,7 @@ class Music{
         void Stop (int msToStop = 1500);
         void Open (string file);
         bool IsOpen ();
+        void Volume(int volume);
 
 };
 

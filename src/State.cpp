@@ -20,10 +20,10 @@ State::State(){
 	go -> box.y = 0;
 	objectArray.emplace_back(go);
     music = new Music("./assets/audio/stageState.ogg");
-
+    music ->Volume(10);
     GameObject *AlienGo = new GameObject();
-    AlienGo -> box.y = 300 - AlienGo -> box.h/2;
-    AlienGo -> box.x = 512 - AlienGo -> box.w/2;
+    AlienGo -> box.y = 100 - AlienGo -> box.h/2;
+    AlienGo -> box.x = 312 - AlienGo -> box.w/2;
     Alien *alien = new Alien(*AlienGo,5);
     AlienGo -> AddComponent(alien);
     
@@ -60,19 +60,37 @@ void State::Render(){
     }
 }
 void State::Update(float dt){
+    
 	InputManager instance = InputManager::GetInstance();
 	if(instance.KeyPress(ESCAPE_KEY) || instance.QuitRequested())
 		quitRequested = true;
     Camera::Update(dt);
-
     for(unsigned int i = 0 ; i < objectArray.size();i++){
         objectArray[i] -> Update(dt);
     }
     for(unsigned int i = 0 ; i < objectArray.size();i++){
-        if(objectArray[i] -> IsDead()){
-	            objectArray.erase(objectArray.begin()+i);
+        Collider *collider = (Collider *)objectArray[i] -> GetComponent("Collider");
+        if(collider == nullptr)
+            continue;
+        for (unsigned int j = i+1; j < objectArray.size(); j++){
+            Collider *collider2 = (Collider *)objectArray[j] -> GetComponent("Collider");
+            if(collider2 == nullptr)
+                continue;
+            if(collider ->IsColliding(*collider2)){
+                objectArray[i] ->NotifyCollision(*objectArray[j]);
+                objectArray[j] ->NotifyCollision(*objectArray[i]);
+            }
         }
     }
+    
+    for(unsigned int i = 0, j = objectArray.size() ; i < j;i++){
+        if(objectArray[i] -> IsDead()){
+            objectArray.erase(objectArray.begin()+i);
+            i--;
+            j--;
+        }
+    }
+
 
 }
 bool State::QuitRequested(){

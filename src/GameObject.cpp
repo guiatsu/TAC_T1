@@ -7,10 +7,12 @@ GameObject::GameObject(){
 }
 
 GameObject::~GameObject(){
+
     for (int i = this -> components.size()-1; i >= 0; i--)
     {
         components.erase(this -> components.begin()+i);
     }
+
 }
 
 void GameObject::Update(float dt){
@@ -56,4 +58,12 @@ void GameObject::Start(){
         components[i] -> Start();
     }
     started = true;
+}
+
+void GameObject::NotifyCollision(GameObject& other){
+    for (unsigned int i = 0; i < components.size(); i++)
+    {
+        components[i] ->NotifyCollision(other);
+    }
+
 }

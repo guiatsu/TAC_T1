@@ -77,3 +77,4 @@ bool TileMap::Is(string type) {
 void TileMap::Start(){
 
 }
+void TileMap::NotifyCollision(GameObject& other){}

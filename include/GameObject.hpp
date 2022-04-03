@@ -26,6 +26,8 @@ class GameObject{
         void AddComponent(Component *cpt);
         void RemoveComponent(Component *cpt);
         Component *GetComponent(string type);
+        
+        void NotifyCollision(GameObject& other);
         void Start();
         bool started;
 

@@ -1,6 +1,6 @@
 #include "../include/Bullet.hpp"
 
-Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount) : Component(associated){
+Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount,bool targetsPlayer) : Component(associated){
     Sprite *spr = new Sprite(associated, sprite,frameCount,0.017);
     associated.box.x-=spr->GetWidth()/2;
     associated.box.y-=spr->GetHeight()/2;
@@ -9,6 +9,9 @@ Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, flo
     this -> speed = this -> speed.rotate(angle)*speed;
     distanceLeft = maxDistance;
     this -> damage = damage;
+    Collider *collider = new Collider(associated);
+    associated.AddComponent(collider);
+    this -> targetsPlayer = targetsPlayer;
 }
 int Bullet::GetDamage(){
     return damage;
@@ -31,3 +34,5 @@ void Bullet::Update (float dt){
         associated.RequestDelete();
 }
 void Bullet::Start(){}
+void Bullet::NotifyCollision(GameObject& other){
+}

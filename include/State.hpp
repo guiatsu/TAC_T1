@@ -13,6 +13,7 @@
 #include "PenguinBody.hpp"
 #include <memory>
 #include <math.h>
+#include "Collider.hpp"
 using namespace std;
 
 class State{

@@ -5,6 +5,7 @@
 #include "Vect.hpp"
 #include "Sprite.hpp"
 #include "GameObject.hpp"
+#include "Collider.hpp"
 using namespace std;
 
 class Bullet : public Component {
@@ -12,13 +13,16 @@ class Bullet : public Component {
         Vect speed;
         float distanceLeft;
         int damage;
+        
     public:
-        Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount = 1);
+        bool targetsPlayer;
+        Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite,int frameCount,bool targetsPlayer);
         int GetDamage();
         bool Is(string type);
         void Render();
         void Update (float dt);
         void Start();
+        void NotifyCollision(GameObject& other);
 };
 
 

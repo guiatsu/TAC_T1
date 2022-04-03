@@ -13,6 +13,7 @@ class Vect{
     Vect operator+= (Vect vect);
     Vect normalized();
     friend Vect operator*(float escalar, Vect &vect);
+    friend Vect operator*(Vect const &vect, float escalar);
     float magnitude();
     float dist(Vect &vect);
     float anglex();

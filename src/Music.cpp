@@ -27,3 +27,6 @@ bool Music::IsOpen(){
 Music::~Music(){
     Stop(1500);
 }
+void Music::Volume(int volume){
+    Mix_VolumeMusic(volume);
+}

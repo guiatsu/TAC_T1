@@ -17,3 +17,4 @@ using namespace std;
         return false;
     }
     void CameraFollower::Start(){}
+    void CameraFollower::NotifyCollision(GameObject& other){}

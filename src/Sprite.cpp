@@ -7,13 +7,18 @@ Sprite::Sprite (GameObject &associated) : Component(associated){
     scale.y = 1;
 }
     
-Sprite::Sprite (GameObject &associated, string file, int frameCount, int frameTime) : Component(associated){
+Sprite::Sprite (GameObject &associated, string file, int frameCount, float frameTime, float secondsToSelfDestruct) : Component(associated){
     texture = nullptr;
     scale.x = 1;
     scale.y = 1;
     Open(file);
     SetFrameCount(frameCount);
     SetFrameTime(frameTime);
+    this -> secondsToSelfDestruct = secondsToSelfDestruct;
+    if(secondsToSelfDestruct > 0)
+        selfDestructCount = new Timer();
+    else
+        selfDestructCount = nullptr;
 }
 Sprite::~Sprite (){
 }
@@ -65,6 +70,12 @@ bool Sprite::IsOpen (){
 }
 void Sprite::Update(float dt){
     timeElapsed += dt;
+    if(selfDestructCount != nullptr){
+        selfDestructCount ->Update(dt);
+        if(selfDestructCount -> Get()>= secondsToSelfDestruct){
+            associated.RequestDelete();
+        }
+    }
     if(timeElapsed >= frameTime){
         if(currentFrame+1 == frameCount){
             SetFrame(0);
@@ -93,7 +104,7 @@ void Sprite::Start(){
 void Sprite::SetFrame (int frame){
     currentFrame = frame;
     timeElapsed = 0;
-    SetClip(GetWidth()*currentFrame,0,width/frameCount,height);
+    SetClip(GetWidth()*currentFrame/scale.x,0,width/frameCount,height);
     
 }
 void Sprite::SetFrameCount (int frameCount){
@@ -105,4 +116,7 @@ void Sprite::SetFrameCount (int frameCount){
 void Sprite::SetFrameTime (float frameTime){
     this -> frameTime = frameTime;
     timeElapsed = 0;
+}
+void Sprite::NotifyCollision(GameObject& other){
+
 }

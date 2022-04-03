@@ -7,6 +7,7 @@
 #include "Component.hpp"
 #include "Resources.hpp"
 #include "Camera.hpp" 
+#include "Timer.hpp"
 using namespace std;
 
 class Sprite : public Component{
@@ -20,10 +21,11 @@ class Sprite : public Component{
     float frameTime;
     SDL_Rect clipRect;
     Vect scale;
-
+    float secondsToSelfDestruct;
+    Timer *selfDestructCount;
     public:
     Sprite (GameObject &associated);
-    Sprite (GameObject &associated, string file, int frameCount = 1, int frameTime = 1);
+    Sprite (GameObject &associated, string file, int frameCount = 1, float frameTime = 1, float secondsToSelfDestruct = 0);
     ~Sprite ();
     void Open (string file);
     void SetClip (int x, int y, int w, int h);
@@ -38,6 +40,7 @@ class Sprite : public Component{
     bool Is(string type);
     void Start();
     void SetFrame (int frame);
+    void NotifyCollision(GameObject& other);
     void SetFrameCount (int frameCount);
     void SetFrameTime (float frameTime);
 

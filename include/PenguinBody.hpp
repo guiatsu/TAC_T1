@@ -7,6 +7,7 @@
 #include "Vect.hpp"
 #include "Sprite.hpp"
 #include <queue>
+#include "Collider.hpp"
 using namespace std;
 
 class PenguinBody : public Component{
@@ -17,6 +18,8 @@ class PenguinBody : public Component{
     void Update(float dt);
     void Render();
     bool Is(string type);
+    void NotifyCollision(GameObject& other);
+    Rect GetPosition();
     static PenguinBody *player;
     private:
     weak_ptr<GameObject> pcannon;

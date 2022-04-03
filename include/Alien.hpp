@@ -7,26 +7,25 @@
 #include "Vect.hpp"
 #include "Sprite.hpp"
 #include "Minion.hpp"
+#include "Collider.hpp"
 #include <queue>
+#include "PenguinBody.hpp"
 using namespace std;
-#define MV Action::ActionType::MOVE
-#define SHT Action::ActionType::SHOOT
+#define MV AlienState::MOVING
+#define RST AlienState::RESTING
 
 class Alien : public Component{
     private:
-        class Action {
-            public:
-                enum ActionType{MOVE,SHOOT};
-                Action(ActionType type, float x, float y);
-                ActionType type;
-                Vect pos;
-        };
+        enum AlienState{MOVING,RESTING};
+        AlienState state;
+        Timer *rest;
+        Vect destination;
         Vect speed;
         int hp;
         int nMinions;
-        queue<Action> taskQueue;
         vector<weak_ptr<GameObject>> minionArray;
     public:
+        static int aliencount;
         Alien(GameObject& associated, int nMinions);
         ~Alien();
         void Start();
@@ -34,6 +33,7 @@ class Alien : public Component{
         void Render();
         bool Is(string type);
         int ClosestMinion(Vect pos);
+        void NotifyCollision(GameObject& other);
         
 };
 
