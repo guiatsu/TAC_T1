@@ -18,7 +18,7 @@ PenguinBody::~PenguinBody(){
     player = nullptr;
 }
 void PenguinBody::Start(){
-    State *instance = &Game::GetInstance().GetState();
+    State *instance = &Game::GetInstance().GetCurrentState();
     GameObject *go = new GameObject();
     weak_ptr<GameObject> penguinCenter = instance -> GetObjectPtr(&associated);
     PenguinCannon *penguinCannon = new PenguinCannon(*go,penguinCenter);
@@ -85,7 +85,7 @@ void PenguinBody::NotifyCollision(GameObject& other){
             other.RequestDelete();
             if(hp <= 0){
                 GameObject *go = new GameObject();
-                State *instance = &Game::GetInstance().GetState();
+                State *instance = &Game::GetInstance().GetCurrentState();
                 Sprite *sprite = new Sprite(*go, "./assets/img/penguindeath.png",5,3.0/30.0,15.0/30.0);
                 go->box.x = associated.box.center().x - go->box.w/2;
                 go->box.y = associated.box.center().y - go->box.h/2;

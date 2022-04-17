@@ -32,10 +32,16 @@
         frameStart = 0;
         dt = 0;
         srand(time(NULL));
-        state = new State();
+        storedState = nullptr;
     }
 
     Game::~Game(){
+        if(storedState != nullptr){
+            delete(storedState);
+        }
+        while(!stateStack.empty())
+            stateStack.pop();
+
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         Mix_CloseAudio();
@@ -46,8 +52,11 @@
     SDL_Renderer *Game::GetRenderer(){
         return renderer;
     }
-    State &Game::GetState(){
-        return *state;
+    State &Game::GetCurrentState(){
+        return *stateStack.top();
+    }
+    void Game::Push(State *state){
+        storedState = state;
     }
     Game &Game::GetInstance()
     {
@@ -57,12 +66,31 @@
         return *instance;
     }
     void Game::Run(){
-        state -> Start();
-        while(!state->QuitRequested()){
+        if(storedState != nullptr){
+            stateStack.emplace(storedState);
+            storedState = nullptr;
+            stateStack.top() -> Start();
+        }
+        else{
+            exit(0);
+        }
+        while(!stateStack.top()->QuitRequested() && !stateStack.empty()){
+            if(stateStack.top()->QuitRequested()){
+                stateStack.pop();
+                if(!stateStack.empty()){
+                    stateStack.top() -> Resume();
+                }
+            }
+            if(storedState != nullptr){
+                stateStack.top() -> Pause();
+                stateStack.emplace(storedState);
+                storedState = nullptr;
+                stateStack.top() ->Start();
+            }
             CalculateDeltaTime();
             InputManager::GetInstance().Update();
-            state -> Update(dt);
-            state -> Render();
+            stateStack.top() -> Update(dt);
+            stateStack.top() -> Render();
             SDL_RenderPresent(renderer);
             SDL_Delay(16);
         }

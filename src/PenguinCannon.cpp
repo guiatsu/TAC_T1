@@ -50,7 +50,7 @@ void PenguinCannon::Shoot(){
         
         Bullet *bullet = new Bullet(*go,angle,512,10,1024,"./assets/img/penguinbullet.png",4,false);
         go -> AddComponent(bullet);
-        State *instance = &Game::GetInstance().GetState();
+        State *instance = &Game::GetInstance().GetCurrentState();
         instance -> AddObject(go);
         GameObject *sd = new GameObject();
         Sound *sound = new Sound(*sd,"./assets/audio/cannon.wav");

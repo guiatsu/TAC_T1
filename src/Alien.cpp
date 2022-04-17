@@ -18,7 +18,7 @@ Alien::Alien(GameObject &associated, int nMinions) : Component(associated){
 void Alien::Start(){
     for (int i = 0 ; i<nMinions;i++){
 
-        State *instance = &Game::GetInstance().GetState();
+        State *instance = &Game::GetInstance().GetCurrentState();
         GameObject *go = new GameObject();
         weak_ptr<GameObject> aliencenter = instance -> GetObjectPtr(&associated);
         Minion *minion = new Minion(*go,aliencenter,(M_PI*(1+2*i*360/nMinions))/360);
@@ -124,7 +124,7 @@ void Alien::NotifyCollision(GameObject& other){
         if(!bullet->targetsPlayer){
             other.RequestDelete();
             GameObject *snow = new GameObject();
-            State *instance = &Game::GetInstance().GetState();
+            State *instance = &Game::GetInstance().GetCurrentState();
             Sound *sound = new Sound(*snow,"./assets/audio/snow.wav");
             sound ->Play(0);
             sound -> Volume(20);

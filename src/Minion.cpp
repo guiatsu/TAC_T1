@@ -52,7 +52,7 @@ void Minion::Shoot(Vect target){
     
     Bullet *bullet = new Bullet(*go,angle,512,50,1024,"./assets/img/minionbullet2.png",3,true);
     go -> AddComponent(bullet);
-    State *instance = &Game::GetInstance().GetState();
+    State *instance = &Game::GetInstance().GetCurrentState();
     instance -> AddObject(go);    
     GameObject *sd = new GameObject();
     Sound *sound = new Sound(*sd,"./assets/audio/laser.wav");
