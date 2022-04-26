@@ -16,7 +16,7 @@ private:
     SDL_Window *window;
     SDL_Renderer *renderer;
     State *storedState;
-    stack<unique_ptr<State>> stateStack;
+    static stack<unique_ptr<State>> stateStack;
     int frameStart;
     float dt;
     void CalculateDeltaTime();

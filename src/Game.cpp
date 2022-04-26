@@ -1,5 +1,6 @@
 #include "../include/Game.hpp"
     Game* Game::instance = nullptr;
+    stack<unique_ptr<State>> Game::stateStack;
 
     Game::Game(string title, int width, int height){
         if(instance != nullptr){
