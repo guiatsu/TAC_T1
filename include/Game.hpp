@@ -7,6 +7,7 @@
 #include "SDL_include.h"
 #include "State.hpp"
 #include "StageState.hpp"
+#include "TitleState.hpp"
 using namespace std;
 class Game{
 

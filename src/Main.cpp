@@ -2,8 +2,8 @@
 #include <iostream>
 int main(int argc, char** argv)
 {
-    Game game = Game::GetInstance();
-    game.Push(new StageState());
-    game.Run();
+    Game::GetInstance().Push(new TitleState());
+	Game::GetInstance().Run();
+
     return 0;
 }

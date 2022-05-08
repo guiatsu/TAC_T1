@@ -76,7 +76,8 @@
             exit(0);
         }
         while(!stateStack.top()->QuitRequested() && !stateStack.empty()){
-            if(stateStack.top()->QuitRequested()){
+            if(stateStack.top()->PopRequested()){
+                stateStack.top()->Pause();
                 stateStack.pop();
                 if(!stateStack.empty()){
                     stateStack.top() -> Resume();
@@ -85,8 +86,8 @@
             if(storedState != nullptr){
                 stateStack.top() -> Pause();
                 stateStack.emplace(storedState);
-                storedState = nullptr;
                 stateStack.top() ->Start();
+                storedState = nullptr;
             }
             CalculateDeltaTime();
             InputManager::GetInstance().Update();
@@ -95,6 +96,8 @@
             SDL_RenderPresent(renderer);
             SDL_Delay(16);
         }
+        while(!stateStack.empty())
+            stateStack.pop();
         Resources::ClearImages();
         Resources::ClearSounds();
         Resources::ClearMusics();

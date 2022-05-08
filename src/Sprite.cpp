@@ -28,7 +28,7 @@ void Sprite::Open (string file){
         if(texture == nullptr){
             cout << IMG_GetError()  << endl;
         }
-        if(SDL_QueryTexture(texture, nullptr, nullptr, &width, &height) != 0)
+        if(SDL_QueryTexture(texture.get(), nullptr, nullptr, &width, &height) != 0)
             cout << SDL_GetError() << endl;
         SetClip(0,0,width,height);
         associated.box.w = width;
@@ -53,7 +53,7 @@ void Sprite::Render (float x, float y){
     dsrect.w = clipRect.w*scale.x;
     dsrect.h = clipRect.h*scale.y;
     if(IsOpen())
-        if(SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture,&clipRect,&dsrect,associated.angleDeg,nullptr,SDL_FLIP_NONE) != 0)
+        if(SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture.get(),&clipRect,&dsrect,associated.angleDeg,nullptr,SDL_FLIP_NONE) != 0)
             cout << SDL_GetError() << endl;
 }
 using namespace std;

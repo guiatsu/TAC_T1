@@ -8,11 +8,12 @@
 #include "Resources.hpp"
 #include "Camera.hpp" 
 #include "Timer.hpp"
+#include <memory>
 using namespace std;
 
 class Sprite : public Component{
     private:
-    SDL_Texture* texture;
+    shared_ptr<SDL_Texture> texture;
     int width;  
     int height;
     int frameCount;

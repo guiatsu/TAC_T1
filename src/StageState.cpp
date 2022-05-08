@@ -63,8 +63,11 @@ void StageState::Render(){
 void StageState::Update(float dt){
     
 	InputManager instance = InputManager::GetInstance();
-	if(instance.KeyPress(ESCAPE_KEY) || instance.QuitRequested())
-		quitRequested = true;
+	if(instance.KeyPress(ESCAPE_KEY) || instance.QuitRequested()){
+		popRequested = true;
+        Camera::Unfollow();
+        Camera::pos = Vect(0,0);
+    }
     Camera::Update(dt);
     for(unsigned int i = 0 ; i < objectArray.size();i++){
         objectArray[i] -> Update(dt);

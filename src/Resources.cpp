@@ -1,16 +1,16 @@
 #include "../include/Resources.hpp"
 #include "../include/Game.hpp"
 
-unordered_map<string,SDL_Texture *> Resources::imageTable;
+unordered_map<string,shared_ptr<SDL_Texture >> Resources::imageTable;
 unordered_map<string,Mix_Chunk *> Resources::soundTable;
 unordered_map<string,Mix_Music *> Resources::musicTable;
 
-SDL_Texture *Resources::GetImage(string file){
+shared_ptr<SDL_Texture>Resources::GetImage(string file){
     auto it = imageTable.find(file);
     SDL_Texture* texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
     if(it == imageTable.end())
         if(texture != nullptr){
-            imageTable[file] = texture;
+            imageTable[file] = shared_ptr<SDL_Texture>(texture,[](SDL_Texture* ptr){SDL_DestroyTexture(ptr);});
             return imageTable[file];
         }
         else
@@ -19,8 +19,11 @@ SDL_Texture *Resources::GetImage(string file){
         return it -> second;
 }
 void Resources::ClearImages(){
+
     for(auto i = imageTable.begin();i != imageTable.end();i++)
-        SDL_DestroyTexture(i -> second);
+        if(i->second.unique()){
+            imageTable.erase(i);
+        }
 }
 
 Mix_Music *Resources::GetMusic(string file){
