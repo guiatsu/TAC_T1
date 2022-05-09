@@ -14,6 +14,7 @@
 #include "PenguinBody.hpp"
 #include <memory>
 #include <math.h>
+#include "Text.hpp"
 #include "Collider.hpp"
 using namespace std;
 

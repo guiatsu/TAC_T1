@@ -1,6 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 #define INCLUDE_SDL
+#define INCLUDE_SDL_TTF
 #include <string>
 #include <iostream>
 #include <stack>

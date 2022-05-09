@@ -2,6 +2,7 @@
 #include "../include/Game.hpp"
 
 unordered_map<string,shared_ptr<SDL_Texture >> Resources::imageTable;
+unordered_map<string,shared_ptr<TTF_Font >> Resources::fontTable;
 unordered_map<string,Mix_Chunk *> Resources::soundTable;
 unordered_map<string,Mix_Music *> Resources::musicTable;
 
@@ -23,6 +24,27 @@ void Resources::ClearImages(){
     for(auto i = imageTable.begin();i != imageTable.end();i++)
         if(i->second.unique()){
             imageTable.erase(i);
+        }
+}
+
+shared_ptr<TTF_Font>Resources::GetFont(string file,int size){
+    auto it = fontTable.find(file+to_string(size));
+    TTF_Font* font = TTF_OpenFont(file.c_str(), size);
+    if(it == fontTable.end())
+        if(font != nullptr){
+            fontTable[file+to_string(size)] = shared_ptr<TTF_Font>(font,[](TTF_Font* ptr){TTF_CloseFont(ptr);});
+            return fontTable[file+to_string(size)];
+        }
+        else
+            return nullptr;
+    else
+        return it -> second;
+}
+void Resources::ClearFonts(){
+
+    for(auto i = fontTable.begin();i != fontTable.end();i++)
+        if(i->second.unique()){
+            fontTable.erase(i);
         }
 }
 

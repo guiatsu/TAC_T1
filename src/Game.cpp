@@ -30,6 +30,9 @@
         if(renderer == nullptr){
             cout << SDL_GetError() << endl;
         }
+        if(TTF_Init() != 0){
+            cout << "erro ao abrir texto" << endl;
+        }
         frameStart = 0;
         dt = 0;
         srand(time(NULL));
@@ -49,6 +52,7 @@
         Mix_Quit();
         IMG_Quit();
         SDL_Quit();
+        TTF_Quit();
     }
     SDL_Renderer *Game::GetRenderer(){
         return renderer;

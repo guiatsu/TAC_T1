@@ -7,6 +7,15 @@ TitleState::TitleState(){
     Sprite *title = new Sprite(*go, "./assets/img/title.jpg");
     go ->AddComponent(title);
     objectArray.emplace_back(go);
+    GameObject *goText = new GameObject();
+    SDL_Color color = {0,0,0,255};
+    Text *text = new Text(*goText,"./assets/font/Call me maybe.ttf",14,Text::BLENDED,"Pressione espaco para iniciar", color,0.5);
+    goText -> AddComponent(text);
+    objectArray.emplace_back(goText);
+    goText-> box.x = 450;
+    goText-> box.y = 500;
+
+    
 
 }
 void TitleState::Start(){
@@ -25,6 +34,7 @@ void TitleState::Update(float dt){
     if(instance.KeyPress(SPACEBAR)){
         Game::GetInstance().Push(new StageState());
     }
+    UpdateArray(dt);
 
 
 }
