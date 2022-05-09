@@ -3,8 +3,8 @@
 
 unordered_map<string,shared_ptr<SDL_Texture >> Resources::imageTable;
 unordered_map<string,shared_ptr<TTF_Font >> Resources::fontTable;
-unordered_map<string,Mix_Chunk *> Resources::soundTable;
-unordered_map<string,Mix_Music *> Resources::musicTable;
+unordered_map<string,shared_ptr<Mix_Chunk>> Resources::soundTable;
+unordered_map<string,shared_ptr<Mix_Music>> Resources::musicTable;
 
 shared_ptr<SDL_Texture>Resources::GetImage(string file){
     auto it = imageTable.find(file);
@@ -48,12 +48,12 @@ void Resources::ClearFonts(){
         }
 }
 
-Mix_Music *Resources::GetMusic(string file){
+shared_ptr<Mix_Music> Resources::GetMusic(string file){
     auto it = musicTable.find(file);
     Mix_Music *music = Mix_LoadMUS(file.c_str());
     if(it == musicTable.end())
         if(music != nullptr){
-            musicTable[file] = music;
+            musicTable[file] = shared_ptr<Mix_Music>(music,[](Mix_Music* ptr){Mix_FreeMusic(ptr);});
             return musicTable[file];
         }
         else
@@ -63,15 +63,17 @@ Mix_Music *Resources::GetMusic(string file){
 }
 void Resources::ClearMusics(){
     for(auto i = musicTable.begin();i != musicTable.end();i++)
-        Mix_FreeMusic(i -> second);
+        if(i->second.unique()){
+            musicTable.erase(i);
+        }
 }
 
-Mix_Chunk *Resources::GetSound(string file){
+shared_ptr<Mix_Chunk> Resources::GetSound(string file){
     auto it = soundTable.find(file);
     Mix_Chunk *sound = Mix_LoadWAV(file.c_str());
     if(it == soundTable.end())
         if(sound !=  nullptr){
-            soundTable[file] = sound;
+            soundTable[file] = shared_ptr<Mix_Chunk>(sound,[](Mix_Chunk* ptr){Mix_FreeChunk(ptr);});;
             return soundTable[file];
         }
         else
@@ -82,7 +84,9 @@ Mix_Chunk *Resources::GetSound(string file){
 }
 void Resources::ClearSounds(){
     for(auto i = soundTable.begin();i != soundTable.end();i++)
-        Mix_FreeChunk(i -> second);
+        if(i->second.unique()){
+            soundTable.erase(i);
+        }
 }
 
 

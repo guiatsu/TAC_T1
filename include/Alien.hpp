@@ -24,9 +24,10 @@ class Alien : public Component{
         int hp;
         int nMinions;
         vector<weak_ptr<GameObject>> minionArray;
+        float timeOffset;
     public:
         static int aliencount;
-        Alien(GameObject& associated, int nMinions);
+        Alien(GameObject& associated, int nMinions,float timeOffset = 0);
         ~Alien();
         void Start();
         void Update(float dt);

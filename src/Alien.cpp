@@ -2,7 +2,7 @@
 #include "../include/Game.hpp"
 #include <iostream>
 int Alien::aliencount = 0;
-Alien::Alien(GameObject &associated, int nMinions) : Component(associated){
+Alien::Alien(GameObject &associated, int nMinions, float timeOffset) : Component(associated){
     Sprite *sprite = new Sprite(associated, "./assets/img/alien.png");
     associated.AddComponent(sprite);
     hp = 100;
@@ -13,6 +13,7 @@ Alien::Alien(GameObject &associated, int nMinions) : Component(associated){
     aliencount += 1;
     state = RST;
     rest = new Timer();
+    this -> timeOffset = timeOffset;
 }
     
 void Alien::Start(){
@@ -46,7 +47,7 @@ void Alien::Update(float dt){
         rest -> Update(dt);
         Vect alien_pos = Vect(associated.box.x,associated.box.y);
         if(state == RST){
-            if(rest -> Get() >= 0.5){
+            if(rest -> Get() >= (0.5+timeOffset)){
                 Vect destiny_center;
                 PenguinBody *pbody = PenguinBody::player;
                 if(pbody != nullptr){

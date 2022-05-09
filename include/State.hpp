@@ -14,6 +14,7 @@
 #include <memory>
 #include <math.h>
 #include "Collider.hpp"
+#include "GameData.hpp"
 using namespace std;
 
 class State{

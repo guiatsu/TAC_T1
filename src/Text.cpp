@@ -25,19 +25,21 @@ Text::~Text(){
 }
 
 void Text::Update(float dt){
-    timer->Update(dt);
-    if(timer->Get() >= blinkTime){
-        SDL_Color aux = color;
-        if(aux.r != 0)
-            aux.r = aux.b = aux.g = 0;
-        else{
-            aux.r = 158;
-            aux.g = 128;
-            aux.b = 45;
-        }
+    if(blinkTime > 0){
+        timer->Update(dt);
+        if(timer->Get() >= blinkTime){
+            SDL_Color aux = color;
+            if(aux.r != 0)
+                aux.r = aux.b = aux.g = 0;
+            else{
+                aux.r = 33;
+                aux.g = 134;
+                aux.b = 178;
+            }
 
-        SetColor(aux);
-        timer->Restart();
+            SetColor(aux);
+            timer->Restart();
+        }
     }
     
 }

@@ -16,7 +16,7 @@ void Music::Stop(int msToStop){
 }
 
 void Music::Open(string file){
-    music = Resources::GetMusic(file);
+    music = Resources::GetMusic(file).get();
 }
 bool Music::IsOpen(){
     if(music != nullptr){

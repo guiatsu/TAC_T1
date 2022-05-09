@@ -29,7 +29,7 @@ void Sound::Volume(int volume){
     Mix_Volume(this -> channel,volume);
 }
 void Sound::Open(string file){
-    this -> chunk = Resources::GetSound(file);
+    this -> chunk = Resources::GetSound(file).get();
     if(this -> chunk == nullptr){
         cout << "erro ao abrir arquivo de som" << endl;
     }
