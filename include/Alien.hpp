@@ -26,6 +26,7 @@ class Alien : public Component{
         vector<weak_ptr<GameObject>> minionArray;
         float timeOffset;
     public:
+        static bool canMove;
         static int aliencount;
         Alien(GameObject& associated, int nMinions,float timeOffset = 0);
         ~Alien();

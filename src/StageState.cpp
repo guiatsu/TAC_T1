@@ -39,30 +39,17 @@ void StageState::LoadAssets(){
 	objectArray.emplace_back(go);
     BackgroundMusic = new Music("./assets/audio/stageState.ogg");
     BackgroundMusic ->Volume(10);
-    GameObject *AlienGo = new GameObject();
-    AlienGo -> box.y = 100 - AlienGo -> box.h/2;
-    AlienGo -> box.x = 312 - AlienGo -> box.w/2;
-    Alien *alien = new Alien(*AlienGo,5);
-    AlienGo -> AddComponent(alien);
-    
-    objectArray.emplace_back(AlienGo);
+    for(int i = 0; i < 3; i++){
 
-    AlienGo = new GameObject();
-    AlienGo -> box.y = 512 - AlienGo -> box.h/2;
-    AlienGo -> box.x = 0 - AlienGo -> box.w/2;
-    alien = new Alien(*AlienGo,5,0.25);
-    AlienGo -> AddComponent(alien);
-    
-    objectArray.emplace_back(AlienGo);
+        GameObject *AlienGo = new GameObject();
+        AlienGo -> box.y = rand()%1200 - AlienGo -> box.h/2;
+        AlienGo -> box.x = rand()%1300 - AlienGo -> box.w/2;
+        Alien *alien = new Alien(*AlienGo,5,rand()%3+1);
+        AlienGo -> AddComponent(alien);
+        
+        objectArray.emplace_back(AlienGo);
+    }
 
-    AlienGo = new GameObject();
-    AlienGo -> box.y = 1080 - AlienGo -> box.h/2;
-    AlienGo -> box.x = 452 - AlienGo -> box.w/2;
-    alien = new Alien(*AlienGo,5,0.5);
-    AlienGo -> AddComponent(alien);
-    
-    objectArray.emplace_back(AlienGo);
-    // Camera::Follow(AlienGo);
     GameObject *PenguinGo = new GameObject();
     PenguinGo -> box.y = 704 - PenguinGo -> box.h/2;
     PenguinGo -> box.x = 640 - PenguinGo -> box.w/2;
@@ -73,6 +60,7 @@ void StageState::LoadAssets(){
     objectArray.emplace_back(PenguinGo);
 
     BackgroundMusic ->Play();
+    Alien::canMove = false;
 }
 void StageState::Render(){
 	for(unsigned int i = 0 ; i < objectArray.size();i++){
@@ -82,13 +70,11 @@ void StageState::Render(){
 void StageState::Update(float dt){
     if(PenguinBody::player == nullptr){
         GameData::playerVictory = false;
-        // BackgroundMusic->Stop();
         popRequested = true;
         Game::GetInstance().Push(new EndState());
     }
     else if(Alien::aliencount == 0){
         GameData::playerVictory = true;
-        // BackgroundMusic->Stop();
         popRequested = true;
         Game::GetInstance().Push(new EndState());
     }
@@ -126,6 +112,7 @@ void StageState::Update(float dt){
                 j--;
             }
         }
+        Alien::canMove = true;
     }
     
 

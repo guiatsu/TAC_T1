@@ -58,11 +58,12 @@ void PenguinBody::Update(float dt){
         associated.angleDeg = angle;
     }
     penguinPos+= speed.normalized().rotate(angle/180*M_PI)*dt*8;
-    Rect Map = Rect(0,0,1308,1200);
-    if(Map.contains(penguinPos)){
-        associated.box.x = penguinPos.x;
-        associated.box.y = penguinPos.y;
-    }
+    if (penguinPos.x >= 1350 || penguinPos.x <= 0)
+        penguinPos.x = associated.box.x;
+    if (penguinPos.y >= 1280 || penguinPos.y <= 0)
+        penguinPos.y = associated.box.y;
+    associated.box.x = penguinPos.x;
+    associated.box.y = penguinPos.y;
     if(hp <= 0){
         if(shared_ptr<GameObject> go = pcannon.lock()){
             go->RequestDelete();

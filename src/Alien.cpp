@@ -2,6 +2,7 @@
 #include "../include/Game.hpp"
 #include <iostream>
 int Alien::aliencount = 0;
+bool Alien::canMove = false;
 Alien::Alien(GameObject &associated, int nMinions, float timeOffset) : Component(associated){
     Sprite *sprite = new Sprite(associated, "./assets/img/alien.png");
     associated.AddComponent(sprite);
@@ -47,7 +48,8 @@ void Alien::Update(float dt){
         rest -> Update(dt);
         Vect alien_pos = Vect(associated.box.x,associated.box.y);
         if(state == RST){
-            if(rest -> Get() >= (0.5+timeOffset)){
+            if(rest -> Get() >= (0.5+timeOffset) && canMove){
+                timeOffset = 0;
                 Vect destiny_center;
                 PenguinBody *pbody = PenguinBody::player;
                 if(pbody != nullptr){
