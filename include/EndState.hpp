@@ -30,7 +30,7 @@ class EndState : public State {
     void Resume();
 
     private:
-    Music backgroundMusic;
+    Music *backgroundMusic;
 
 };
 #endif

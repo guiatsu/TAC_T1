@@ -82,13 +82,13 @@ void StageState::Render(){
 void StageState::Update(float dt){
     if(PenguinBody::player == nullptr){
         GameData::playerVictory = false;
-        BackgroundMusic->Stop();
+        // BackgroundMusic->Stop();
         popRequested = true;
         Game::GetInstance().Push(new EndState());
     }
     else if(Alien::aliencount == 0){
         GameData::playerVictory = true;
-        BackgroundMusic->Stop();
+        // BackgroundMusic->Stop();
         popRequested = true;
         Game::GetInstance().Push(new EndState());
     }

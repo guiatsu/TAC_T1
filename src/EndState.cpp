@@ -20,9 +20,9 @@ EndState::EndState(){
         objectArray.emplace_back(goText);
         goText-> box.x = 300;
         goText-> box.y = 500;
-        backgroundMusic = Music("./assets/audio/endStateWin.ogg");
-        backgroundMusic.Volume(10);
-        backgroundMusic.Play();
+        backgroundMusic = new Music("./assets/audio/endStateWin.ogg");
+        backgroundMusic -> Volume(10);
+        backgroundMusic -> Play();
 
     }
     else{
@@ -39,9 +39,9 @@ EndState::EndState(){
             objectArray.emplace_back(goText);
             goText-> box.x = 300;
             goText-> box.y = 550;
-            backgroundMusic = Music("./assets/audio/endStateLose.ogg");
-            backgroundMusic.Volume(10);
-            backgroundMusic.Play();
+            backgroundMusic = new Music("./assets/audio/endStateLose.ogg");
+            backgroundMusic -> Volume(10);
+            backgroundMusic -> Play();
         }
     }
 }
@@ -69,7 +69,7 @@ void EndState::Update(float dt){
 }
 EndState::~EndState(){
     objectArray.clear();
-    backgroundMusic.Stop();
+    backgroundMusic->Stop();
 }
 void EndState::Resume() {
 
